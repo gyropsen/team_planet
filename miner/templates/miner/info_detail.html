@@ -1,0 +1,51 @@
+{% extends 'miner/base.html' %}
+{% block content %}
+<div class="row mb-3 text-center">
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">
+                    Всего поинтов накоплено: {{object.amount}}
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <a href="{% url 'miner:get_point' object.pk %}">
+                        <img src="/media/coin-svgrepo-com.svg" width="500" height="500" alt="Пример">
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer">
+                Поинтов в секунду прибавляется: {{object.per_second}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table text-center">
+        <thead>
+        <tr>
+            <th style="width: 22%;">Название</th>
+            <th style="width: 34%;">Цель</th>
+            <th style="width: 34%;">Выполнено</th>
+        </tr>
+        </thead>
+        {% for achievement in achievements %}
+        <tbody>
+        <tr>
+            <td scope="row">{{achievement.name}}</td>
+            <td scope="row">{{achievement.task}}</td>
+            <td scope="row">
+                {% if object.amount >= achievement.task %}
+                Выполнено!
+                {% else %}
+                Осталось немного!
+                {% endif %}
+            </td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

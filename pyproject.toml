@@ -13,6 +13,8 @@ ipython = "^8.22.2"
 pytils = "^0.4.1"
 python-dotenv = "^1.0.1"
 django = "^5.0.6"
+celery = "^5.4.0"
+redis = "^5.0.4"
 
 [tool.poetry.group.lint.dependencies]
 black = "^23.10.1"
